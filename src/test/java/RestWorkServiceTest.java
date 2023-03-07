@@ -1,32 +1,39 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import ru.netology.javaqa.javaqamvn.services.RestWorkService;
 
 public class RestWorkServiceTest {
-    @Test
-    public void shouldCalcMonth1() {
+    @ParameterizedTest
+    @CsvSource({
+            "3, 90000, 30000, 140000",
+            "3, 10000, 3000, 20000",
+            "2, 100000, 60000, 150000",
+    })
+    public void shouldCalcMonth1(int expected, int income, int expenses, int threshold) {
         RestWorkService service = new RestWorkService();
 
-        int expected = 3;
-        int actual = service.calculate(90_000, 30_000, 140_000);
+        //      int expected = 3;
+        int actual = service.calculate(income, expenses, threshold);
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test
-    public void shouldCalcMonth2() {
-        RestWorkService service = new RestWorkService();
+    //  @Test
+    //   public void shouldCalcMonth2() {
+    //      RestWorkService service = new RestWorkService();
 
-        int expected = 3;
-        int actual = service.calculate(10_000, 3_000, 20_000);
-        Assertions.assertEquals(expected, actual);
-    }
+    //      int expected = 3;
+    //     int actual = service.calculate(10_000, 3_000, 20_000);
+    //    Assertions.assertEquals(expected, actual);
+    // }
 
-    @Test
-    public void shouldCalcMonth3() {
-        RestWorkService service = new RestWorkService();
+    //  @Test
+    //   public void shouldCalcMonth3() {
+    //     RestWorkService service = new RestWorkService();
 
-        int expected = 2;
-        int actual = service.calculate(100_000, 60_000, 150_000);
-        Assertions.assertEquals(expected, actual);
-    }
+    //    int expected = 2;
+    //    int actual = service.calculate(100_000, 60_000, 150_000);
+    //     Assertions.assertEquals(expected, actual);
+    // }
 }
